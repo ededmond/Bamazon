@@ -22,3 +22,9 @@ values ("Bicycle","Sports",150.00,10),
 ("Ice Cream Maker","Cooking",55.95,4),
 ("Basketball","Sports",19.99,30),
 ("Tennis Balls","Sports",5.99,400);
+
+update products
+set stock_quantity = 3
+where item_id = 1;
+
+select * from products;
