@@ -42,7 +42,7 @@ function menu() {
 
 function viewSales() {
     connection.query(`select departments.department_id,departments.department_name,departments.over_head_costs,
-        SUM(products.product_sales) as sales, (departments.over_head_costs - SUM(products.product_sales)) as total_profit
+        SUM(products.product_sales) as sales, (SUM(products.product_sales) - departments.over_head_costs) as total_profit
         FROM departments left join products on (departments.department_name = products.department_name)
         GROUP BY department_name`
     ,function(error,data) {

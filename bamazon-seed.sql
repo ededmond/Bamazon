@@ -34,7 +34,7 @@ insert into departments (department_name,over_head_costs)
 values ("Sports",10000),("Cooking",5000),("Cleaning",7000),("Gaming",50000);
 
 alter table products 
-add column product_sales decimal(10,2) not null;
+add column product_sales decimal(10,2)  default 0 not null;
 
 select * from products;
 select * from departments;
