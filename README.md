@@ -43,7 +43,5 @@ bamazonSupervisor functions as follows:
 
 Things I would like to add:
     bamazonManager would select a department rather than typing it in
-        When adding a product the price would disallow decimal places greater than 2
     bamazonCustomer would be able to search by department
     bamazonManager would have to add how much they paid for increasing inventory and adding products, which would be added to the overhead costs.
-    bamazonSupervisor would include a column for the number of products in that department, and total sales and profit would not read as null when a department was empty

@@ -63,8 +63,11 @@ const header = {
     total_profit : "Total Profit"
 }
 function formatDepartment(row) {
+    //in cases of null say 0; there aren't sales or profits because a department has just been added
+    let sales = row.sales || 0;
+    let profit = row.total_profit || 0;
     return ` ${row.department_id}`.padEnd(4)+`|  ${row.department_name}`.padEnd(20) +
-    `|  ${row.over_head_costs}`.padEnd(13)+`|  ${row.sales}`.padEnd(16)+`|  ${row.total_profit}`;
+    `|  ${row.over_head_costs}`.padEnd(13)+`|  ${sales}`.padEnd(16)+`|  ${profit}`;
 }
 
 function newDepartment() {

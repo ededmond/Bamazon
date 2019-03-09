@@ -89,7 +89,15 @@ function addProduct() {
         message: "How much will the product cost?",
         name: "price",
         validate: function(input) {
-            return parseFloat(input) == input && parseFloat(input) > 0;
+            try {
+                if (input.toString().split(".")[1].length > 2) {
+                    return false;
+                }
+                return parseFloat(input) == input && parseFloat(input) > 0;
+            } catch {
+                return false;
+            }
+            
         }
     } , {
         message: "How many are you selling?",
