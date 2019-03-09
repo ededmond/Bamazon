@@ -1,0 +1,2 @@
+# Bamazon
+Database CLI app
