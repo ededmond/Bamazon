@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/ededmond/Bamazon#readme",
   "dependencies": {
-    "dotenv": "^6.2.0"
+    "dotenv": "^6.2.0",
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0"
   }
 }
