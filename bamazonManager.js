@@ -78,42 +78,51 @@ function addToInventory() {
     });
 }
 function addProduct() {
-    inquirer.prompt([{
-        message: "What is the product name?",
-        name: "name"
-    }, {
-        message: "What department is the product in?",
-        name:"department"
-        //add list of departments; only supervisers can add departments
-    }, {
-        message: "How much will the product cost?",
-        name: "price",
-        validate: function(input) {
-            try {
-                if (input.toString().split(".")[1].length > 2) {
+    connection.query(`SELECT department_name FROM departments`,function(error,data) {
+        if (error) throw error;
+        let deps = [];
+        for (let i =0; i < data.length;i++) {
+            deps.push(data[i].department_name);
+        }
+            inquirer.prompt([{
+            message: "What is the product name?",
+            name: "name"
+        }, {
+            message: "What department is the product in?",
+            name:"department",
+            type: "list",
+            choices: deps
+        }, {
+            message: "How much will the product cost?",
+            name: "price",
+            validate: function(input) {
+                try {
+                    if (input.toString().split(".")[1].length > 2) {
+                        return false;
+                    }
+                    return parseFloat(input) == input && parseFloat(input) > 0;
+                } catch (error) {
                     return false;
                 }
-                return parseFloat(input) == input && parseFloat(input) > 0;
-            } catch {
-                return false;
+                
             }
-            
-        }
-    } , {
-        message: "How many are you selling?",
-        name: "stock",
-        validate: function(input) {
-            return parseInt(input) == input && parseInt(input) > 0;
-        }
-    }]).then(res => {
-        connection.query(`insert into products (product_name, department_name,price,stock_quantity)
-                        values ('${res.name}','${res.department}','${res.price}','${res.stock}')`
-        ,function(error) {
-            if (error) throw error;
-            console.log("Product added.");
-            menu();
+        } , {
+            message: "How many are you selling?",
+            name: "stock",
+            validate: function(input) {
+                return parseInt(input) == input && parseInt(input) > 0;
+            }
+        }]).then(res => {
+            connection.query(`insert into products (product_name, department_name,price,stock_quantity)
+                            values ('${res.name}','${res.department}','${res.price}','${res.stock}')`
+            ,function(error) {
+                if (error) throw error;
+                console.log("Product added.");
+                menu();
+            });
         });
     });
+    
 }
 
 //searches for the query, and formats the data
