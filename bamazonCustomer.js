@@ -49,10 +49,11 @@ function askToBuy() {
             let item = res.item.split("|"); //splits item into it's pieces
             let inStock = parseInt(item[4].trim());
             //if the number you want to buy is less than the number in stock...
+            let cost = res.quantity * parseFloat(item[3].trim())
             if (res.quantity < inStock) { 
-                connection.query(`UPDATE products SET stock_quantity =${inStock-res.quantity} where item_id = ${parseInt(item[0].trim())}`,function(error) {
+                connection.query(`UPDATE products SET stock_quantity =${inStock-res.quantity}, product_sales = product_sales + ${cost} where item_id = ${parseInt(item[0].trim())}`,function(error) {
                     if (error) throw error;
-                    console.log(`Your total comes to $${(res.quantity * parseFloat(item[3].trim())).toFixed(2)}`);
+                    console.log(`Your total comes to $${cost.toFixed(2)}`);
                     restart();
                 })
             } else {

@@ -23,8 +23,23 @@ values ("Bicycle","Sports",150.00,10),
 ("Basketball","Sports",19.99,30),
 ("Tennis Balls","Sports",5.99,400);
 
-update products
-set stock_quantity = 3
-where item_id = 1;
+create table departments (
+	department_id int auto_increment,
+    department_name varchar(45),
+    over_head_costs decimal(10,2),
+	primary key (department_id)
+);
+
+insert into departments (department_name,over_head_costs) 
+values ("Sports",10000),("Cooking",5000),("Cleaning",7000),("Gaming",50000);
+
+alter table products 
+add column product_sales decimal(10,2) not null;
 
 select * from products;
+select * from departments;
+
+select departments.department_id,departments.department_name,departments.over_head_costs,
+SUM(products.product_sales) as sales, (departments.over_head_costs - SUM(products.product_sales)) as total_profit
+FROM departments left join products on (departments.department_name = products.department_name)
+GROUP BY department_name;
