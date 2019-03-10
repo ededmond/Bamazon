@@ -43,7 +43,7 @@ function menu() {
                 console.log("Have a nice day.");
                 connection.end();
         }
-    })
+    });
 }
 function addToInventory() {
     console.log("Select the product: \n\n");
@@ -122,7 +122,6 @@ function addProduct() {
             });
         });
     });
-    
 }
 
 //searches for the query, and formats the data

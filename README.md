@@ -42,6 +42,5 @@ bamazonSupervisor functions as follows:
             All other options return to this menu upon completion
 
 Things I would like to add:
-    bamazonManager would select a department rather than typing it in
     bamazonCustomer would be able to search by department
     bamazonManager would have to add how much they paid for increasing inventory and adding products, which would be added to the overhead costs.
